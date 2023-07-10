@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main_page.css" th:href="@{css/main_page.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/medical_waste.css" th:href="@{css/medical_waste.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/input_css.css" th:href="@{css/input_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/button_css.css" th:href="@{css/button_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/table_css.css" th:href="@{css/table_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/select_css.css" th:href="@{css/select_css.css}"
+          media="screen"/>
+
+    <title>Отчет о медицинских отходах</title>
+</head>
+<body>
+<form th:action="@{view-report}" method="get">
+
+    <div class="header_1" th:each="view : ${viewReport}">
+        <p>Отчет</p>
+        <p>по медицинским отходам за &nbsp<span th:text="*{view.cvartl}" class="input-table"></span>&nbsp квартал &nbsp<span th:text="*{view.years}"
+                 class="input-table"></span>&nbsp года</p>
+        <p>Девицкое ООВП</p>
+    </div>
+
+    <div class="main">
+        <table>
+            <tr>
+                <th>Кол-во (кг)</th>
+                <th>Перевязочный материал</th>
+                <th>Пищевые отходы</th>
+                <th>Полимерные отходы</th>
+                <th>Метал</th>
+                <th>Патологоанатомические отходы</th>
+                <th>Лабораторные отходы</th>
+                <th>Прочее</th>
+                <th>Всего</th>
+            </tr>
+            <tr th:each="view : ${viewReport}">
+                <td>Б/В</td>
+                <td th:text="*{view.waste_1}"></td>
+                <td th:text="*{view.waste_2}"></td>
+                <td th:text="*{view.waste_3}"></td>
+                <td th:text="*{view.waste_4}"></td>
+                <td th:text="*{view.waste_5}"></td>
+                <td th:text="*{view.waste_6}"></td>
+                <td th:text="*{view.waste_7}"></td>
+                <td th:text="*{view.otchet_a_b}"></td>
+            </tr>
+            <tr th:each="view : ${viewReport}">
+                <td>А</td>
+                <td th:text="*{view.waste_8}"></td>
+                <td th:text="*{view.waste_9}"></td>
+                <td th:text="*{view.waste_10}"></td>
+                <td th:text="*{view.waste_11}"></td>
+                <td th:text="*{view.waste_12}"></td>
+                <td th:text="*{view.waste_13}"></td>
+                <td th:text="*{view.waste_14}"></td>
+                <td th:text="*{view.otchet_a}"></td>
+            </tr>
+        </table>
+
+    </div>
+</form>
+</body>
+</html>

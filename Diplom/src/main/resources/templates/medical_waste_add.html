@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main_page.css" th:href="@{css/main_page.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/medical_waste.css" th:href="@{css/medical_waste.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/input_css.css" th:href="@{css/input_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/button_css.css" th:href="@{css/button_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/table_css.css" th:href="@{css/table_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/select_css.css" th:href="@{css/select_css.css}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/tabs.css" th:href="@{css/tabs.css}"
+          media="screen"/>
+    <title>Медицинские отходы</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a th:href="@{/}"><img class="exit_foto" src="/foto/home.png"></a>
+    
+        <div class="topnav-centered">
+            <p>Отчет о медицинских отходах</p>
+        </div>
+    
+        <ul class="tabs">
+            <li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/add_med_ot}">Добавление данных</a></li>
+            <li><a th:href="@{/update_status}">Отчеты</a></li>
+            <li><a th:href="@{/status_medotx}">Проверка отчетов</a></li>
+            <li><a th:href="@{/statistic_medotx}">Статистика</a></li>
+          </ul>
+    
+    </div>
+
+            <form th:action="@{add_med_ot}" modelattribute="addMO" name="calculator" method="post">
+
+                <div class="header_1">
+                    <p>Отчет</p>
+                    <p>по медицинским отходам за
+                        <input type="number" min="1" max="4" name="cvartl" class="input-table">квартал</input>
+                        <input type="number" min="1900" max="2099" step="1" name="years"
+                               class="input-table">года</input>
+                    </p>
+                    <p>Девицкое ООВП</p>
+                </div>
+        
+                <div class="main">
+                    <table>
+                        <tr>
+                            <th>Кол-во (кг)</th>
+                            <th>Перевязочный материал</th>
+                            <th>Пищевые отходы</th>
+                            <th>Полимерные отходы</th>
+                            <th>Метал</th>
+                            <th>Патологоанатомические отходы</th>
+                            <th>Лабораторные отходы</th>
+                            <th>Прочее</th>
+                            <th>Всего</th>
+                        </tr>
+                        <tr>
+                            <td>Б/В</td>
+                            <td><input type="number" name="waste_1" class="input-table"></input></td>
+                            <td><input type="number" name="waste_2" class="input-table"></input></td>
+                            <td><input type="number" name="waste_3" class="input-table"></input></td>
+                            <td><input type="number" name="waste_4" class="input-table"></input></td>
+                            <td><input type="number" name="waste_5" class="input-table"></input></td>
+                            <td><input type="number" name="waste_6" class="input-table"></input></td>
+                            <td><input type="number" name="waste_7" class="input-table"></input></td>
+                            <td><input id="otchet_a_b" type="number" name="otchet_a_b" class="input-table"></input></td>
+                        </tr>
+                        <tr>
+                            <td>А</td>
+                            <td><input type="number" name="waste_8" class="input-table"></input></td>
+                            <td><input type="number" name="waste_9" class="input-table"></input></td>
+                            <td><input type="number" name="waste_10" class="input-table"></input></td>
+                            <td><input type="number" name="waste_11" class="input-table"></input></td>
+                            <td><input type="number" name="waste_12" class="input-table"></input></td>
+                            <td><input type="number" name="waste_13" class="input-table"></input></td>
+                            <td><input type="number" name="waste_14" class="input-table"></input></td>
+                            <td><input id="otchet_a"  type="number" name="otchet_a" class="input-table"></input></td>
+                        </tr>
+                    </table>
+        
+                </div>
+        
+        
+                <button type="submit" class="floating-button">Сохранить</button>
+        
+            </form>
+            <form th:action="@{uploadExcelFile}" method="post" enctype="multipart/form-data">
+                <div class="input__wrapper">
+                    <input name="file" type="file" id="input__file" accept=".xls,.xlsx" class="input input__file" multiple>
+                    <label for="input__file" class="input__file-button">
+                        <span class="input__file-icon-wrapper"><img class="input__file-icon" th:src="@{/foto/add.png}"
+                                                                    alt="Выбрать файл" width="60" height="50"></span>
+                        <span class="input__file-button-text">Выберите файл</span>
+                    </label>
+        
+                    <div>
+                        <button type="submit" class="floating-button-file">Выгрузить данные</button>
+                    </div>
+        
+                </div>
+            </form>
+            <script src="js/calculat.js"></script>
+         
+        
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+
+ul, li {
+  padding: 0;
+  margin: 0;
+}
+.tabs {
+  margin-bottom: -5px;
+}
+.tabs li {
+  display: inline-block;
+  background-color: #333;  
+}
+.tabs li a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+
+  line-height: 30px;
+}
+.tabs-content {
+  width:640px;
+  height:100px;
+}
+.tabs-content ul {
+  list-style: none;
+  height: 120px;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+.tabs-content ul li {
+  width:638px;
+  height:98px;
+  border: 1px dashed red;
+}
+.tabs-content ul li div {
+  padding: 20px;
+}

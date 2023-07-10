@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main_page.css" />
+    <link rel="stylesheet" type="text/css" href="css/medical_waste.css" />
+    <link rel="stylesheet" type="text/css" href="css/input_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/button_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/table_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/select_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/tabs.css" />
+    <title>Медицинские отходы</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a th:href="@{/}"><img class="exit_foto" src="/foto/home.png"></a>
+    
+        <div class="topnav-centered">
+            <p>Отчет о медицинских отходах</p>
+        </div>
+    
+        <ul class="tabs">
+            <li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/add_med_ot}">Добавление данных</a></li>
+            <li><a th:href="@{/update_status}">Отчеты</a></li>
+            <li><a th:href="@{/status_medotx}">Проверка отчетов</a></li>
+            <li><a th:href="@{/statistic_medotx}">Статистика</a></li>
+          </ul>
+    
+    </div>
+    <br></br>
+    <br></br>
+    <form th:action="@{status_medotx}" method="get" modelattribute="currentStatus">
+
+        <table class="table-status">
+            <tr class="tr-status">
+                <th class="th-status">Квартал</th>
+                <th class="th-status">Год</th>
+                <th class="th-status">Статус</th>
+                <th class="th-status">Комментарий</th>
+                <th sec:authorize="hasRole('ROLE_USER')" class="th-status">Внесение изменений</th>
+            </tr>
+            <tr class="tr-status" th:each="statusCur : ${currentStatus}">
+                <td class="td-status" th:text="${statusCur.cvartl}" name="cvartl"></td>
+                <td class="td-status" th:text="${statusCur.years}" name="years"></td>
+                <td class="td-status" th:text="${statusCur.StatusMedicalWastes.status}"></td>
+                <td class="td-status" th:text="${statusCur.StatusMedicalWastes.comment_status}"></td>
+                <td  sec:authorize="hasRole('ROLE_USER')" class="td-status">
+                    <form th:action="@{medic_update}" th:object="${currentStatus}" method="get">
+                        <input type="hidden" name="cvartl" th:value="${statusCur.cvartl}">
+                        <input type="hidden" name="years" th:value="${statusCur.years}">
+                        <button type="submit" class="button-update"><span>Изменить</span></button>
+                    </form>
+                </td>
+    
+            </tr>
+    
+        </table>
+    </form>
+
+
+
+
+</body>
+</html>

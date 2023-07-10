@@ -1,0 +1,126 @@
+.floating-button {
+    text-decoration: none;
+    display: inline-block;
+    width: 250px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 45px;
+    border-color: #ffffff;
+    margin-left: 1300px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+
+
+.floating-button:hover {
+    background: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+    color: white;
+    transform: translateY(-7px);
+}
+
+.floating-button-file{
+    text-decoration: none;
+    display: inline-block;
+    width: 250px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 10px;
+    border-color: #ffffff;
+    margin: 10px 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+  }
+
+  .floating-button-file:hover {
+    background: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+    color: white;
+    transform: translateY(-7px);
+}
+
+.button-excel-word-pdf{
+    text-decoration: none;
+    display: inline-block;
+    width: 250px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 10px;
+    border-color: #ffffff;
+    margin: 10px 0px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+  }
+
+  .button-excel-word-pdf:hover {
+    background: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+    color: white;
+    transform: translateY(-7px);
+}
+
+.button-update{
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #000000;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: #F8E391;
+  padding: 10px 30px;
+  margin: 0 auto;
+  border: 2px solid #000000;
+
+}
+
+.button-update span{
+  position: relative;
+  z-index: 1;
+}
+
+  .button-update::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 470%;
+    width: 140%;
+    background: #BCEBDD;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: translateX(-100%) translateY(-25%) rotate(45deg);
+    transform: translateX(-100%) translateY(-25%) rotate(45deg);
+  }
+  .button-update:hover::after {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main_page.css" />
+    <link rel="stylesheet" type="text/css" href="css/medical_waste.css" />
+    <link rel="stylesheet" type="text/css" href="css/input_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/button_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/table_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/select_css.css" />
+    <link rel="stylesheet" type="text/css" href="css/tabs.css" />
+    <title>Медицинские отходы</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a th:href="@{/}"><img class="exit_foto" src="/foto/home.png"></a>
+    
+        <div class="topnav-centered">
+            <p>Отчет о медицинских отходах</p>
+        </div>
+    
+        <ul class="tabs">
+            <li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/add_med_ot}">Добавление данных</a></li>
+            <li><a th:href="@{/update_status}">Отчеты</a></li>
+            <li><a th:href="@{/status_medotx}">Проверка отчетов</a></li>
+            <li><a th:href="@{/statistic_medotx}">Статистика</a></li>
+          </ul>
+    
+    </div>
+    <br></br>
+    <br></br>
+    <div class="form-exort">
+        <form th:action="@{update_status}" method="post" modelattribute="addStatus">
+            <div class="contener-otchet">
+                <h2>Введите данные для просмотра</h2>
+                <div class="form-exort">
+                    <div class="text-field text-field_floating-2">
+                        <input class="text-field__input" type="number" id="cvartl" name="cvartl" min="1" max="4"
+                               placeholder="1">
+                        <label class="text-field__label">Введите квартал</label>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <input class="text-field__input" type="number" id="years" name="years" min="2021" max="2030"
+                               placeholder="2021">
+                        <label class="text-field__label">Введите год</label>
+                    </div>
+                    <button formaction="/view-report" type="submit" class="button-excel-word-pdf" formmethod="get">
+                        Просмотреть отчет
+                    </button>
+                    <button formaction="/export-to-word" type="submit" class="button-excel-word-pdf" formmethod="get">
+                        Выгрузить в Word
+                    </button>
+                    <button formaction="/export-to-excel" type="submit" class="button-excel-word-pdf" formmethod="get">
+                        Выгрузить в Excel
+                    </button>
+                </div>
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')" class="contener-otchet">
+                <h2>Установите статус состояния отчета</h2>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <div class="select">
+                    <input class="select__input" type="hidden" name="status">
+                    <div class="select__head">Выберите</div>
+                    <ul class="select__list" style="display: none;">
+                        <li class="select__item">Подтверждено</li>
+                        <li class="select__item">Не подтверждено</li>
+                    </ul>
+                </div>
+                <script src="js/select.js"></script>
+                <div class="text-field text-field_floating-2">
+                    <textarea class="text-field__input" type="text" id="comment_status" name="comment_status"
+                              placeholder="comment"></textarea>
+                    <label class="text-field__label">Комментарий</label>
+                </div>
+                <button type="submit" class="button-excel-word-pdf" >
+                    Сохранить статус
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

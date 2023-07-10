@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main_page.css"  th:href="@{css/main_page.css}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../static/css/main_page_script.css"  th:href="@{css/main_page_script.css}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/card.css"  th:href="@{css/card.css}" media="screen"/>
+
+    <title>Главная страницы</title>
+</head>
+
+<body>
+<form th:action="@{/}" method="post">
+<div class="topnav">
+    <a th:href="@{/login}"><img class="exit_foto" th:src="@{/foto/exit.png}"></a>
+    <div class="topnav-centered">
+        <p><span th:text="${currentUser.name}"></span></p>
+    </div>
+
+    <form action="/search.php">
+        <div class="search-box">
+            <input type="text" name="" class="search-txt" placeholder="Введите название шаблона..." />
+            <button class="search-btn" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+    </form>
+
+</div>
+
+
+<div class="main">
+
+    <div class="card">
+        <a href="#">
+            <h4><b>Отчет по медикаментам</b></h4>
+        </a>
+    </div>
+    <div class="card">
+        <a href="#">
+            <h4><b>Отчет по численности населения</b></h4>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="#">
+            <h4><b>Отчет по болевшим короновирусом</b></h4>
+        </a>
+    </div>
+
+    <div class="card">
+        <a th:href="@{/update_status}">
+            <h4><b>Отчет по медецинским отходам</b></h4>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="#">
+            <h4><b>Отчет по физиотерапии</b></h4>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="#">
+            <h4><b>Отчет по профосмотру детей</b></h4>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="#">
+            <h4><b>Отчет по сведениям о смертности</b></h4>
+        </a>
+    </div>
+</div>
+</form>
+</body>
+
+</html>
